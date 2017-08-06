@@ -1,9 +1,11 @@
 package com.tutorial.spring.pictogram;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.SmartLifecycle;
 import org.springframework.stereotype.Component;
 
+import java.time.Instant;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -16,6 +18,8 @@ public class Greeter implements Runnable, SmartLifecycle {
     private Future<?> greeterFuture = null;
     private AtomicBoolean isRunning = new AtomicBoolean(true);
 
+    @Value("${pictogram.greeter.version:VERSION_NOT_SET}")
+    private String version;
     public Greeter(ExecutorService leaderElectedExecutor) {
         executorService = leaderElectedExecutor;
     }
@@ -74,7 +78,8 @@ public class Greeter implements Runnable, SmartLifecycle {
 
     @Override
     public String toString() {
-        return String.valueOf(java.time.Instant.now());
+        String msg = String.format("%s - version: %s", Instant.now(), version);
+        return String.valueOf(msg);
     }
 }
 

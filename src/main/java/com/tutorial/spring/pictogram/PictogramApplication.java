@@ -7,13 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 
 /**
- *Structuring app as described
- * <a href="https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-structuring-your-code.html">here</a>
  * @author 66-24
  */
 // TODO Shutdown hooks to clean up resources on shutdown
-// TODO Use build properties in resources. Example loading a versioned file
-//  https://docs.spring.io/spring-boot/docs/current/reference/html/howto-properties-and-configuration.html
 @Slf4j
 @SpringBootApplication
 public class PictogramApplication implements CommandLineRunner {
