@@ -1,6 +1,5 @@
 package com.tutorial.spring.pictogram;
 
-import com.tutorial.spring.pictogram.spring_bean_definitions.SpringConfig;
 import org.apache.curator.test.TestingServer;
 import org.apache.curator.utils.CloseableUtils;
 import org.junit.After;
@@ -9,6 +8,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -16,11 +17,18 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.io.IOException;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = {SpringConfig.class, SpringTestConfig.class})
+@ContextConfiguration(classes = {PictogramApplicationTests.TestBeans.class})
 @DirtiesContext
 @SpringBootTest
 @Ignore
 public class PictogramApplicationTests {
+	@Configuration
+	public static class TestBeans {
+		@Bean
+		TestingServer testingServer() throws Exception {
+			return new TestingServer(2181);
+		}
+	}
     @Autowired
     TestingServer zookeeperServer;
 

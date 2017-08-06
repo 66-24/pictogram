@@ -1,9 +1,7 @@
 package com.tutorial.spring.pictogram;
 
-import com.tutorial.spring.pictogram.spring_bean_definitions.SpringConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.SmartLifecycle;
-import org.springframework.integration.annotation.Role;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.ExecutorService;
@@ -24,7 +22,7 @@ public class Greeter implements Runnable, SmartLifecycle {
 
     private void sendGreeting() throws InterruptedException {
         while (isRunning.get()) {
-            log.info("Leader says Hi {}", this);
+            log.info("Greeter says Hi {}", this);
             Thread.sleep(2000);
         }
     }
@@ -74,5 +72,9 @@ public class Greeter implements Runnable, SmartLifecycle {
         return 0;
     }
 
+    @Override
+    public String toString() {
+        return String.valueOf(java.time.Instant.now());
+    }
 }
 

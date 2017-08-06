@@ -1,38 +1,33 @@
 package com.tutorial.spring.pictogram.spring_bean_definitions;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
-import com.ryantenney.metrics.spring.config.annotation.EnableMetrics;
 import com.tutorial.spring.pictogram.Greeter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.retry.RetryOneTime;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.SmartLifecycle;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.integration.config.EnableIntegration;
 import org.springframework.integration.leader.event.AbstractLeaderEvent;
 import org.springframework.integration.leader.event.DefaultLeaderEventPublisher;
 import org.springframework.integration.support.SmartLifecycleRoleController;
 import org.springframework.integration.zookeeper.config.CuratorFrameworkFactoryBean;
 import org.springframework.integration.zookeeper.config.LeaderInitiatorFactoryBean;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.util.LinkedMultiValueMap;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
-import java.util.concurrent.TimeUnit;
 
 @Configuration
 @Slf4j
-@EnableIntegration
-@SpringBootApplication
-@EnableMetrics
-public class SpringConfig {
-
+public class LeaderElectionBeans {
+    @Bean
+    public ThreadPoolTaskScheduler threadPoolTaskScheduler() {
+        return new ThreadPoolTaskScheduler();
+    }
     @Value("${zookeeper.port:2181}")
     private  String ZK_PORT;
     private static final String ROLE_LEADER = "leader";
@@ -40,17 +35,11 @@ public class SpringConfig {
     @Bean
     public ThreadFactory threadFactory() {
         return new ThreadFactoryBuilder()
-                .setNameFormat("LeaderElection")
+                .setNameFormat(ROLE_LEADER)
                 .build();
     }
 
 
-    @Bean
-    public ExecutorService leaderElectedExecutor() throws InterruptedException {
-        ExecutorService executorService = Executors.newSingleThreadExecutor(threadFactory());
-        executorService.awaitTermination(0, TimeUnit.SECONDS);
-        return executorService;
-    }
 
     @Bean
     public CuratorFramework curatorFramework() throws Exception {
@@ -95,11 +84,6 @@ public class SpringConfig {
         leaderInitiatorFactoryBean.setRole(ROLE_LEADER);
         leaderInitiatorFactoryBean.setLeaderEventPublisher(new DefaultLeaderEventPublisher(applicationEventPublisher));
         return leaderInitiatorFactoryBean;
-    }
-
-    @Bean
-    public Greeter greeter(ExecutorService leaderElectedExecutor ) {
-        return new Greeter(leaderElectedExecutor);
     }
 
 }

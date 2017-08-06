@@ -1,22 +1,39 @@
 package com.tutorial.spring.pictogram;
 
-import com.tutorial.spring.pictogram.spring_bean_definitions.SpringConfig;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.Banner;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 
+/**
+ *Structuring app as described
+ * <a href="https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-structuring-your-code.html">here</a>
+ * @author 66-24
+ */
+// TODO Shutdown hooks to clean up resources on shutdown
+// TODO Use build properties in resources. Example loading a versioned file
+//  https://docs.spring.io/spring-boot/docs/current/reference/html/howto-properties-and-configuration.html
 @Slf4j
+@SpringBootApplication
 public class PictogramApplication implements CommandLineRunner {
 
-    public static void main(String[] args) {
-        SpringApplication.run(SpringConfig.class, args);
+    public static void main(String[] args) throws InterruptedException {
+        new SpringApplicationBuilder()
+                .addCommandLineProperties(true)
+                .bannerMode(Banner.Mode.OFF)
+                .sources(PictogramApplication.class)
+                .logStartupInfo(true)
+                .registerShutdownHook(true)
+                .run(args);
     }
 
 
     @Override
     public void run(String... strings) throws Exception {
-        log.info("run called");
-        Thread.sleep(Long.MAX_VALUE);
+        log.info("Joining thread, you can press Ctrl+C to shutdown application");
+        Thread.currentThread().join();
     }
 
 }
+
