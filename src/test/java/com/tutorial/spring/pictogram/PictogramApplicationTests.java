@@ -1,5 +1,6 @@
 package com.tutorial.spring.pictogram;
 
+import com.tutorial.spring.pictogram.spring_bean_definitions.SpringConfig;
 import org.apache.curator.test.TestingServer;
 import org.apache.curator.utils.CloseableUtils;
 import org.junit.After;

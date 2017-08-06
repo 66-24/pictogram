@@ -1,5 +1,6 @@
 package com.tutorial.spring.pictogram;
 
+import com.tutorial.spring.pictogram.spring_bean_definitions.SpringConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.SmartLifecycle;
 import org.springframework.integration.annotation.Role;
@@ -17,11 +18,10 @@ public class Greeter implements Runnable, SmartLifecycle {
     private Future<?> greeterFuture = null;
     private AtomicBoolean isRunning = new AtomicBoolean(true);
 
-    Greeter(ExecutorService leaderElectedExecutor) {
+    public Greeter(ExecutorService leaderElectedExecutor) {
         executorService = leaderElectedExecutor;
     }
 
-    @Role(SpringConfig.ROLE_LEADER)
     private void sendGreeting() throws InterruptedException {
         while (isRunning.get()) {
             log.info("Leader says Hi {}", this);

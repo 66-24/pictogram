@@ -1,6 +1,8 @@
-package com.tutorial.spring.pictogram;
+package com.tutorial.spring.pictogram.spring_bean_definitions;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import com.ryantenney.metrics.spring.config.annotation.EnableMetrics;
+import com.tutorial.spring.pictogram.Greeter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.retry.RetryOneTime;
@@ -28,11 +30,12 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 @EnableIntegration
 @SpringBootApplication
+@EnableMetrics
 public class SpringConfig {
 
     @Value("${zookeeper.port:2181}")
     private  String ZK_PORT;
-    static final String ROLE_LEADER = "leader";
+    private static final String ROLE_LEADER = "leader";
 
     @Bean
     public ThreadFactory threadFactory() {
