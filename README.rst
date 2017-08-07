@@ -32,20 +32,18 @@ See com.tutorial.spring.pictogram.PictogramApplicationTests
 Leader Election
 ---------------
 Use SSH local port forwarding::
-:bash:
-```
-ssh -NL 9191:localhost:2181 localhost
-```
+
+    ssh -NL 9191:localhost:2181 localhost
 
 Starting Multiple Instances of Pictogram
 ----------------------------------------
 Change the following Program Arguments for each instance::
-:bash:
-```
---zookeeper.port=9191
---management.port=9091
---server.port=9090
-```
+
+    --zookeeper.port=9191
+    --management.port=9091
+    --server.port=9090
+
+
 
 
 
