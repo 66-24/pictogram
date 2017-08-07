@@ -38,7 +38,7 @@ ssh -NL 9191:localhost:2181 localhost
 
 Starting Multiple Instances of Pictogram
 ----------------------------------------
-Use the following Program Arguments for each instance
+Change the following Program Arguments for each instance
 ```
 --zookeeper.port=9191
 --management.port=9091
