@@ -10,6 +10,7 @@ See `docs <https://docs.spring.io/spring-boot/docs/current/reference/html/howto-
 - Use @Primary, when there are more than 1 candidate beans found for autowiring
 - DropWizard ScheduledReporters have start and stop method, but are not designed to be started and stopped more than
 once. Hence using a Prototype Scope with these Reporters to get a different instance on Leader election.
+- System Metrics and Health using spring-actuator
 
 Notes
 =====
@@ -34,6 +35,16 @@ Use SSH local port forwarding
 ```bash
 ssh -NL 9191:localhost:2181 localhost
 ```
+
+Starting Multiple Instances of Pictogram
+----------------------------------------
+Use the following Program Arguments for each instance
+```
+--zookeeper.port=9191
+--management.port=9091
+--server.port=9090
+```
+
 
 
 
