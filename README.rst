@@ -7,6 +7,7 @@ Features
 - Leader Election using Zookeeper and Spring-integration
 - Loads resource(s) that are decorated with build time properties such as ``project.version``.
 See `docs <https://docs.spring.io/spring-boot/docs/current/reference/html/howto-properties-and-configuration.html>`_
+
 - Use @Primary, when there are more than 1 candidate beans found for autowiring
 - DropWizard ScheduledReporters have start and stop method, but are not designed to be started and stopped more than
 once. Hence using a Prototype Scope with these Reporters to get a different instance on Leader election.
