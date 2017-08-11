@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.time.Instant;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
@@ -15,15 +14,15 @@ public class Greeter extends BasicSmartLifeCycleWrapper implements Runnable {
     private final ExecutorService executorService;
     private Future<?> greeterFuture = null;
 
-    @Value("${pictogram.greeter.version:VERSION_NOT_SET}")
-    private String version;
+    @Value("${pictogram.greeter.greeting:GREETING_NOT_SET}")
+    private String greeting;
     public Greeter(ExecutorService leaderElectedExecutor) {
         executorService = leaderElectedExecutor;
     }
 
     private void sendGreeting() throws InterruptedException {
         while (super.getIsRunning().get()) {
-            log.info("Greeter says Hi {}", this);
+            log.info("Greeter says {}", greeting);
             Thread.sleep(2000);
         }
     }
@@ -52,10 +51,5 @@ public class Greeter extends BasicSmartLifeCycleWrapper implements Runnable {
         greeterFuture.cancel(true);
     }
 
-    @Override
-    public String toString() {
-        String msg = String.format("%s - version: %s", Instant.now(), version);
-        return String.valueOf(msg);
-    }
 }
 

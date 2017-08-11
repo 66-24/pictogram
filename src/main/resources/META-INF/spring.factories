@@ -1,0 +1,2 @@
+org.springframework.boot.SpringApplicationRunListener=\
+  com.tutorial.spring.pictogram.property_sources.PictogramSpringApplicationListener

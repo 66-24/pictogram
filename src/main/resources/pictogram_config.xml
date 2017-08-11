@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<config>
+    <pictogram>
+        <greeter>
+            <greeting>Hello World Using a build time property ${pictogram.greeter.version}</greeting>
+            <!--<greeting>Hello World</greeting>-->
+        </greeter>
+    </pictogram>
+</config>

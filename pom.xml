@@ -47,6 +47,24 @@
             <artifactId>metrics-core</artifactId>
             <version>3.2.3</version>
         </dependency>
+
+        <!--These 3 jars are for loading an xml configuration-->
+        <dependency>
+            <groupId>commons-configuration</groupId>
+            <artifactId>commons-configuration</artifactId>
+            <version>1.8</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>1.8.0</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-jxpath</groupId>
+            <artifactId>commons-jxpath</artifactId>
+            <version>1.3</version>
+        </dependency>
+
         <!--<dependency>-->
             <!--<groupId>com.ryantenney.metrics</groupId>-->
             <!--<artifactId>metrics-spring</artifactId>-->
