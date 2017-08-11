@@ -61,7 +61,8 @@ public class LeaderElectionBeans {
     }
 
     @Bean
-    public ApplicationEventPublisher applicationEventPublisher(SmartLifecycleRoleController smartLifecycleRoleController) {
+    public ApplicationEventPublisher applicationEventPublisher(
+            SmartLifecycleRoleController smartLifecycleRoleController) {
         return new ApplicationEventPublisher() {
             @Override
             public void publishEvent(ApplicationEvent applicationEvent) {

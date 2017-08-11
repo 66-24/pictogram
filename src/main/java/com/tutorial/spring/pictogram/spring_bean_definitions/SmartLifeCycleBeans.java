@@ -22,12 +22,20 @@ public class SmartLifeCycleBeans {
     }
 
     @Bean
-    public ScheduledReporterSmartLifeCycleWrapper consoleReportersSmartLifeCycleWrapper(ApplicationContext applicationContext) {
-        return new ScheduledReporterSmartLifeCycleWrapper<>(applicationContext, ConsoleReporter.class, Duration.ofSeconds(2));
+    public ScheduledReporterSmartLifeCycleWrapper consoleReportersSmartLifeCycleWrapper(
+            ApplicationContext applicationContext) {
+        return new ScheduledReporterSmartLifeCycleWrapper<>(
+                applicationContext,
+                ConsoleReporter.class,
+                Duration.ofSeconds(2));
     }
 
     @Bean
-    public ScheduledReporterSmartLifeCycleWrapper slf4jReporterSmartLifeCycleWrapper(ApplicationContext applicationContext) {
-        return new ScheduledReporterSmartLifeCycleWrapper<>(applicationContext, Slf4jReporter.class, Duration.ofSeconds(2));
+    public ScheduledReporterSmartLifeCycleWrapper slf4jReporterSmartLifeCycleWrapper(
+            ApplicationContext applicationContext) {
+        return new ScheduledReporterSmartLifeCycleWrapper<>(
+                applicationContext,
+                Slf4jReporter.class,
+                Duration.ofSeconds(2));
     }
 }
