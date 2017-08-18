@@ -8,17 +8,16 @@ Features
 - Loads resource(s) that are decorated with build time properties such as ``project.version``.
     See `docs <https://docs.spring.io/spring-boot/docs/current/reference/html/howto-properties-and-configuration.html>`_
 - Use @Primary, when there are more than 1 candidate beans found for autowiring
-- DropWizard ScheduledReporters have start and stop methods, but are not designed to be started and stopped more than
-once. Hence using a Prototype Scope with these Reporters to get a different instance on Leader election.
+- DropWizard ScheduledReporters have start and stop methods, but are not designed to be started and stopped more thanonce. Hence using a Prototype Scope with these Reporters to get a different instance on Leader election.
 - System Metrics and Health using spring-actuator
 - Uses an external XML configuration file in addition  to application.properties
-- - Uses apache commons configuration to parse the XML configuration
-- - Issue: PlaceHolders in Lists are not expanded
+    - Uses apache commons configuration to parse the XML configuration
+    - Issue: PlaceHolders in Lists are not expanded
 
 Notes
 =====
 #. Structured app as shown `here <https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-structuring-your-code.html>`_
-#. Spring-Integration `docs <https://github.com/spring-projects/spring-integration/blob/master/src/reference/asciidoc/zookeeper.adoc>`_ on leader election
+#. Spring-Integration `documentation <https://github.com/spring-projects/spring-integration/blob/master/src/reference/asciidoc/zookeeper.adoc>`_ on leader election
 #.  Spring-cloud: _<> has been sunset in favor of Spring-Integration.
 #. `Interesting issue <https://github.com/spring-cloud/spring-cloud-zookeeper/issues/93>`_
 #. Source on `github <https://github.com/spring-projects/spring-integration/tree/master/spring-integration-core/src/main/java/org/springframework/integration/leader>`_
