@@ -3,7 +3,30 @@
     <pictogram>
         <greeter>
             <greeting>Hello World Using a build time property ${pictogram.greeter.version}</greeting>
-            <!--<greeting>Hello World</greeting>-->
         </greeter>
     </pictogram>
+    <smart>
+        <!--This placeholder is expanded-->
+        <main_greeting>App version is ${pictogram.greeter.version}</main_greeting>
+        <greetings>
+            <!--Issue - Placeholder not expanded as part of list-->
+            <greeting>App version is ${pictogram.greeter.version}</greeting>
+            <greeting>App is version 0</greeting>
+        </greetings>
+        <greeter>
+            <delayInMillis>2000</delayInMillis>
+        </greeter>
+        <sparkProperties>
+            <spark.yarn.am.memory>512m</spark.yarn.am.memory>
+            <spark.yarn.am.cores>1</spark.yarn.am.cores>
+        </sparkProperties>
+    </smart>
+    <impala>
+        <connection>
+            <driverUrl>jdbc://impala:2100</driverUrl>
+            <port>2000</port>
+            <username>test</username>
+            <password>password</password>
+        </connection>
+    </impala>
 </config>

@@ -11,6 +11,9 @@ Features
 - DropWizard ScheduledReporters have start and stop methods, but are not designed to be started and stopped more than
 once. Hence using a Prototype Scope with these Reporters to get a different instance on Leader election.
 - System Metrics and Health using spring-actuator
+- Uses an external XML configuration file in addition  to application.properties
+- - Uses apache commons configuration to parse the XML configuration
+- - Issue: PlaceHolders in Lists are not expanded
 
 Notes
 =====

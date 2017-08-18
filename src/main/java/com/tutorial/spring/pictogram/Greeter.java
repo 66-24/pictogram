@@ -9,7 +9,7 @@ import java.util.concurrent.Future;
 
 @Slf4j
 @Component
-public class Greeter extends BasicSmartLifeCycleWrapper implements Runnable {
+public class Greeter extends BasicSmartLifeCycleWrapper  {
 
     private final ExecutorService executorService;
     private Future<?> greeterFuture = null;
@@ -20,27 +20,23 @@ public class Greeter extends BasicSmartLifeCycleWrapper implements Runnable {
         executorService = leaderElectedExecutor;
     }
 
-    private void sendGreeting() throws InterruptedException {
-        while (super.getIsRunning().get()) {
-            log.info("Greeter says {}", greeting);
-            Thread.sleep(2000);
-        }
-    }
-
-    @Override
-    public void run() {
+    public void sendGreeting() {
         try {
-            sendGreeting();
-        } catch (Exception e) {
+            while (super.getIsRunning().get()) {
+                log.info("Greeter says {}", greeting);
+                Thread.sleep(2000);
+            }
+        } catch (InterruptedException e) {
             log.warn("Greeter interrupted, stopping.");
             super.getIsRunning().set(false);
         }
     }
 
+
     @Override
     public void start() {
         super.start();
-        greeterFuture = executorService.submit(this);
+        greeterFuture = executorService.submit(this::sendGreeting);
 
     }
 

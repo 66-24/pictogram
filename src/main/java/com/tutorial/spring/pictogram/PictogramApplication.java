@@ -5,6 +5,7 @@ import org.springframework.boot.Banner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * @author 66-24
@@ -12,6 +13,12 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 // TODO Shutdown hooks to clean up resources on shutdown
 @Slf4j
 @SpringBootApplication
+@EnableScheduling
+//@EnableConfigurationProperties(
+//        {SmartGreeterProperties.class,
+//        ConnectionProperties.class})
+
+
 public class PictogramApplication implements CommandLineRunner {
 
     public static void main(String[] args) throws InterruptedException {
